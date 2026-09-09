@@ -2,9 +2,10 @@
 
 A hands-on implementation demonstrating Automated Storage Retention, Cost Optimization (FinOps), Identity Security (IAM), and Disaster Recovery (DR) using AWS CLI, Python, Linux Cron, Amazon EBS, and Amazon S3.
 
-====================================================================================
+
 1. SYSTEM ARCHITECTURE & TECH STACK
-====================================================================================
+
+![architecture](./screenshots/architecture.png)
 
 | CATEGORY             | SERVICES & TOOLS                | OPERATIONAL VALUE                                  |
 | :------------------- | :------------------------------ | :------------------------------------------------- |
@@ -14,13 +15,13 @@ A hands-on implementation demonstrating Automated Storage Retention, Cost Optimi
 | Disaster Recovery    | S3 Versioning, AWS CLI (sync)   | Object versioning, deletion sync, & file recovery. |
 
 
-====================================================================================
-2. PROOF OF WORK & IMPLEMENTATION LAB TASKS
-====================================================================================
 
-------------------------------------------------------------------------------------
+2. PROOF OF WORK & IMPLEMENTATION LAB TASKS
+
+
+
 TASK 1: SECURITY & IDENTITY SETUP (IAM INSTANCE PROFILE)
-------------------------------------------------------------------------------------
+
 Objective: Attach 'S3BucketAccess' IAM Role to the 'Processor' EC2 Instance to grant 
 secure access to S3 and EBS without hardcoding static access keys.
 
@@ -32,9 +33,9 @@ Steps Executed:
 ![Task 1 - IAM Role Attachment](./screenshots/01-iam-role-processor.png)
 
 
-------------------------------------------------------------------------------------
+
 TASK 2: EBS SNAPSHOT AUTOMATION & RETENTION CLEANUP
-------------------------------------------------------------------------------------
+
 
 Task 2.1 & 2.2: Instance Metadata Discovery & Baseline Snapshot
 Retrieved target Volume ID and Instance ID via AWS CLI, stopped the instance for crash-consistency, and created an initial baseline snapshot.
@@ -67,9 +68,9 @@ $ aws ec2 describe-snapshots --filters "Name=volume-id, Values=<VOLUME-ID>" --qu
 ![Task 2.4 - Python Automated EBS Retention](./screenshots/03-python-ebs-cleanup.png)
 
 
-------------------------------------------------------------------------------------
+
 TASK 3: AMAZON S3 SYNC, VERSIONING & DISASTER RECOVERY
-------------------------------------------------------------------------------------
+
 
 Task 3.1: Environment Setup
 Downloaded and extracted sample data files onto the Processor instance.
@@ -103,9 +104,9 @@ Commands Executed:
 ![Task 3.2 - S3 Disaster Recovery & Version Restore](./screenshots/04.3-s3-disaster-recovery.png)
 
 
-====================================================================================
+
 3. ENGINEERING HIGHLIGHTS & KEY TAKEAWAYS
-====================================================================================
+
 
 - Storage Cost Optimization: Prevented unexpected billing by automating the deletion of legacy EBS snapshots via Python Boto3 scripting.
 - Ransomware & Data Loss Resilience: Leveraged S3 Bucket Versioning and CLI object manipulation to achieve rapid Recovery Point Objectives (RPO).
